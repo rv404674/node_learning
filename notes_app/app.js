@@ -1,7 +1,9 @@
 // const utils = require("./utils")
+
 const fileSystem = require("fs")
 const getNotes = require("./notes");
 const validator = require("validator");
+const chalk = require("chalk");
 // const helloWorld = require("../helloWorld")
 
 // NOTE: to use any library in node, you have to use require to load it
@@ -21,3 +23,4 @@ console.log(msg)
 
 console.log(validator.isEmail("rv404674@gmail.com"));
 console.log(validator.isURL("https://io.url"));
+console.log(chalk.green.inverse.bold("Hello world in green"));
