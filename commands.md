@@ -15,3 +15,9 @@ NOTE: It will create two things
 
 npm install or  npm install chalk@2.4.1
 it will use package.json and download all the dependencies mentioned.
+
+Use jshint to scan for errors.
+```json
+sudo npm install -g jshint
+```
+
