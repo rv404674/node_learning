@@ -2,6 +2,8 @@ const logger = require("./logger");
 const path = require("path");
 const os = require("os");
 const fs = require("fs");
+// NOTE: uppercase for both the words in case of class.
+const EventEmitter = require("events");
 
 function sayHello(name){
     console.log("Hello " + name + " This is my first node program");
@@ -35,4 +37,35 @@ fs.readdir('./', function (err, files) {
     if(err) console.log('Error', er);
     else console.log('Result', files);
 });
+
+
+const emitter = new EventEmitter();
+// NOTE: you need to register a listener that will listen for the event.
+
+// Register a listener
+emitter.on('messageLogged', function(){
+    console.log('Listener called');
+});
+
+// FIXME: the ordering of these statements is important.
+//  when you emit an event, emitter goes over all the registered listeners
+// and calls them synchronously.
+emitter.emit('messageLogged');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
