@@ -43,14 +43,26 @@ const emitter = new EventEmitter();
 // NOTE: you need to register a listener that will listen for the event.
 
 // Register a listener
-emitter.on('messageLogged', function(){
-    console.log('Listener called');
+emitter.on('messageLogged', function(arg){
+    console.log('Listener called', arg);
 });
 
 // FIXME: the ordering of these statements is important.
 //  when you emit an event, emitter goes over all the registered listeners
 // and calls them synchronously.
-emitter.emit('messageLogged');
+// you can pass event arguements as well.
+emitter.emit('messageLogged', { id: 1, url: 'https://'});
+
+// A simpler way of writing listener.
+emitter.on('firstProgram', (arg) => {
+    // here the code that you want
+    console.log('First program listener called', arg);
+});
+
+// raise a second event
+emitter.emit('firstProgram', {type:'Nodejs', difficulty:10});
+
+
 
 
 
