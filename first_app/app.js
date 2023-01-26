@@ -1,4 +1,4 @@
-const logger = require("./logger");
+const Logger = require("./logger");
 const path = require("path");
 const os = require("os");
 const fs = require("fs");
@@ -12,8 +12,6 @@ function sayHello(name){
 sayHello("Rahul");
 // Use Modular system
 // NOTE: Every file in Node is considered as a Module.
-
-logger.log('Logging this to cloud.');
 
 // PATH MODULE
 let pathObj = path.parse(__filename);
@@ -39,37 +37,37 @@ fs.readdir('./', function (err, files) {
 });
 
 
-const emitter = new EventEmitter();
-// NOTE: you need to register a listener that will listen for the event.
+// const emitter = new EventEmitter();
+// // NOTE: you need to register a listener that will listen for the event.
+//
+// // Register a listener
+// emitter.on('messageLogged', function(arg){
+//     console.log('Listener called', arg);
+// });
+//
+// // FIXME: the ordering of these statements is important.
+// //  when you emit an event, emitter goes over all the registered listeners
+// // and calls them synchronously.
+// // you can pass event arguements as well.
+// emitter.emit('messageLogged', { id: 1, url: 'https://'});
+//
+// // A simpler way of writing listener.
+// emitter.on('firstProgram', (arg) => {
+//     // here the code that you want
+//     console.log('First program listener called', arg);
+// });
+//
+// // raise a second event
+// emitter.emit('firstProgram', {type:'Nodejs', difficulty:10});
 
-// Register a listener
-emitter.on('messageLogged', function(arg){
-    console.log('Listener called', arg);
+// FIXME: emitting an event and listening to the event, should be part of the same object.
+const logger = new Logger();
+// register a listener
+logger.on('messageLogged', (arg) => {
+    console.log('Logger listener called', arg);
 });
 
-// FIXME: the ordering of these statements is important.
-//  when you emit an event, emitter goes over all the registered listeners
-// and calls them synchronously.
-// you can pass event arguements as well.
-emitter.emit('messageLogged', { id: 1, url: 'https://'});
-
-// A simpler way of writing listener.
-emitter.on('firstProgram', (arg) => {
-    // here the code that you want
-    console.log('First program listener called', arg);
-});
-
-// raise a second event
-emitter.emit('firstProgram', {type:'Nodejs', difficulty:10});
-
-
-
-
-
-
-
-
-
+logger.log('message');g
 
 
 
